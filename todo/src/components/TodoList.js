@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { finishTodo } from '../actions/Todo'
+import { finishTodo, delTodo } from '../actions/Todo'
 import PropTypes from 'prop-types';
 
 const TodoList = props => {
@@ -8,8 +8,12 @@ const TodoList = props => {
     <div>
       {props.todos.map((todoItem, id) => {
         return (
-          <p key={id} onClick={(e) => {props.finishTodo(e, id)}}>
-            {todoItem.value} = completed: {`${todoItem.completed}`}
+          <p key={id}>
+            <span onClick={(e) => {props.finishTodo(e, id)}}>
+              {todoItem.value} = completed: {`${todoItem.completed} `}
+              
+            </span>
+            <button onClick={(e) => {props.delTodo(e,id)}}>X</button>
           </p>
         );
       })}
@@ -28,4 +32,4 @@ const mapStateToProps = (state) => {
     };
   };
 
-  export default connect(mapStateToProps, { finishTodo })(TodoList);
+  export default connect(mapStateToProps, { finishTodo, delTodo })(TodoList);

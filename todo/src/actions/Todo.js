@@ -1,8 +1,8 @@
 export const ADD_TODO = 'ADD_TODO';
 export const FINISH_TODO = 'FINISH_TODO';
+export const DEL_TODO = 'DEL_TODO'
 
 export const addTodo = (e, todoItem) => {
-  // Fill in this function
   e.preventDefault();
   return {
     type: ADD_TODO,
@@ -11,10 +11,17 @@ export const addTodo = (e, todoItem) => {
 };
 
 export const finishTodo = (e, id) => {
-  // Fill in this function
   e.preventDefault();
   return {
     type: FINISH_TODO,
+    payload: id
+  }
+};
+
+export const delTodo = (e, id) => {
+  e.preventDefault();
+  return {
+    type: DEL_TODO,
     payload: id
   }
 };

@@ -1,4 +1,4 @@
-import { FINISH_TODO, ADD_TODO } from '../actions/Todo';
+import { FINISH_TODO, ADD_TODO, DEL_TODO } from '../actions/Todo';
 
 const initialState = {
   todos: []
@@ -9,6 +9,16 @@ let newTodos = [];
 export default (state = initialState, action) => {
   newTodos = [...state.todos];
   switch (action.type) {
+
+    case DEL_TODO:
+      // 1. Check if newTodos has items to delete
+      // 2. Check if payload is a valid position in the array 
+      // 3. If both true, evaluate splice of the array at the index of payload
+      (((newTodos.length > 0) && (action.payload > -1)) && 
+        (newTodos.splice(action.payload, 1))
+      )
+      return ({todos: newTodos})
+
     case FINISH_TODO:
       // 1. Check if newTodos has items to delete
       // 2. Check if payload is a valid position in the array 

@@ -12,6 +12,7 @@ export const addTodo = (e, todoItem) => {
 
 export const finishTodo = (e, id) => {
   e.preventDefault();
+  e.stopPropagation();
   return {
     type: FINISH_TODO,
     payload: id
@@ -20,6 +21,7 @@ export const finishTodo = (e, id) => {
 
 export const delTodo = (e, id) => {
   e.preventDefault();
+  e.stopPropagation();
   return {
     type: DEL_TODO,
     payload: id

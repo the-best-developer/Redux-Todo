@@ -2,22 +2,44 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { finishTodo, delTodo } from '../actions/Todo'
 import PropTypes from 'prop-types';
+import styled from 'styled-components'
+
+const TodoListContainer = styled.div`
+    display: flex;
+    flex-direction: column
+    align-items: center;
+`;
+
+const StyledP = styled.p`
+    min-width: 350px;
+    min-height: 30px;
+    background-color: lightgrey;
+    text-align: center;
+    padding: 10px 5px 0 5px;
+    border-radius: 10px;
+
+    ${props => (props.completed ? `background-color: lightgreen;` : null)}
+`;
+
+const StyledSpan = styled.span`
+    margin: 0 5px;
+`;
 
 const TodoList = props => {
   return (
-    <div>
+    <TodoListContainer>
       {props.todos.map((todoItem, id) => {
-        return (
-          <p key={id}>
-            <span onClick={(e) => {props.finishTodo(e, id)}}>
-              {todoItem.value} = completed: {`${todoItem.completed} `}
-              
-            </span>
-            <button onClick={(e) => {props.delTodo(e,id)}}>X</button>
-          </p>
-        );
+       return (
+            <StyledP completed={todoItem.completed} key={id} onClick={(e) => {props.finishTodo(e, id)}}>
+              <StyledSpan>
+                {todoItem.value}
+              </StyledSpan>
+              <button onClick={(e) => {props.delTodo(e,id)}}>X</button>
+            </StyledP>
+          );
+        
       })}
-    </div>
+    </TodoListContainer>
   );
 };
 

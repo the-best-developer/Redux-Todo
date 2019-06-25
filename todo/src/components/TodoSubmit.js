@@ -24,7 +24,9 @@ class TodoSubmit extends React.Component {
                 {/* On submit of new todo, call the addTodo function and pass the newTodo
                     stored in the local state to the global(Redux) state.
                 */}
-                <form onSubmit={(e) => this.props.addTodo(e, this.state.newTodo)} >
+                <form onSubmit={(e) => {
+                    this.props.addTodo(e, this.state.newTodo)
+                    this.setState({newTodo: ""})}}>
                     New todo:
                     <input type="text" onChange={(e) => this.textChangeHandler(e,"newTodo")} value={this.state.newTodo} />
                     <button type="submit"> Add </button>
